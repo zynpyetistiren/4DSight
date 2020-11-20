@@ -1,0 +1,28 @@
+#new version of python is not compatible with SIFT 
+#pip install -U opencv-contrib-python==3.4.0.12
+
+import cv2
+import numpy as np
+
+#read the images
+small_img = cv2.imread('Small_area.png')
+starmap_img = cv2.imread('StarMap.png')
+
+#convert to grayscale to speedup the process
+small_gray= cv2.cvtColor(small_img,cv2.COLOR_BGR2GRAY)
+starmap_gray= cv2.cvtColor(starmap_img,cv2.COLOR_BGR2GRAY)
+
+#create SIFT detector
+sift = cv2.xfeatures2d.SIFT_create()
+
+#detect keypoints and descriptors for each image
+small_kp, small_des = sift.detectAndCompute(small_gray,None)
+starmap_kp, starmap_des = sift.detectAndCompute(starmap_gray,None)
+
+#draw the keypoints
+cv2.drawKeypoints(small_gray,small_kp,small_img)
+cv2.drawKeypoints(starmap_gray,starmap_kp,starmap_img)
+
+
+cv2.imwrite('sift_keypoints_small.jpg',small_img)
+cv2.imwrite('sift_keypoints_starmap.jpg',starmap_img)
