@@ -1,5 +1,6 @@
 #new version of python is not compatible with SIFT 
 #pip install -U opencv-contrib-python==3.4.0.12
+#this code does not work for rotated images
 
 import cv2
 import numpy as np
